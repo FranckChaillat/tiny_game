@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hello World</title>
+</head>
+<body>
+  <script src="pixi/pixi.min.js"></script>
+  <script src="display.js"></script>
+  <script type="text/javascript">
+    const Application = PIXI.Application,
+    Container = PIXI.Container,
+    loader = PIXI.Loader.shared,
+    resources = PIXI.Loader.shared.resources,
+    TextureCache = PIXI.utils.TextureCache,
+    Sprite = PIXI.Sprite,
+    Rectangle = PIXI.Rectangle;
+
+    let type = "WebGL";
+
+    //Create a Pixi Application
+    const app = new PIXI.Application({ 
+    height: 720,
+    width: 1280,  
+    antialias: true,    // default: false
+    transparent: false, // default: false
+    resolution: 1       // default: 1
+  });
+    //Add the canvas that Pixi automatically created for you to the HTML document
+    document.body.appendChild(app.view);
+
+    loader.add('sheet', "http://0.0.0.0:8000/images/ogrehunt/ogrehunt.json");
+    loader.load(setup);
+
+
+    let dungeon, id, ogre
+
+    let ogreDirection = "back"
+
+    function setup() {
+
+        var sheet = loader.resources.sheet;
+        dungeon = new Sprite(sheet.textures['grass.jpg']); 
+        ogre = initOgre() 
+        app.stage.addChild(dungeon);
+        app.stage.addChild(ogre);
+        app.ticker.add((delta) => gameLoop(delta));
+
+    }
+
+
+    function gameLoop() {
+      ogre.y += 2;
+      if(ogre.y == 200) {
+         ogreDirection = "left"
+         ogre.gotoAndPlay(ogreSequences[ogreDirection].start)
+      }
+    }
+
+
+  </script>
+</body>
+</html>

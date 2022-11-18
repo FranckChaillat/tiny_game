@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hello World</title>
+</head>
+<body>
+  <script src="pixi/pixi.min.js"></script>
+  <script type="text/javascript">
+    let type = "WebGL";
+    //Create a Pixi Application
+    const app = new PIXI.Application({ 
+    width: 800,         // default: 800
+    height: 800,        // default: 600
+    antialias: true,    // default: false
+    transparent: false, // default: false
+    resolution: 1       // default: 1
+  });
+    //Add the canvas that Pixi automatically created for you to the HTML document
+    document.body.appendChild(app.view);
+
+    PIXI.Loader.shared
+        .add("cat", "http://localhost:8000/cat.png")
+        .load(setup);
+
+    function setup() {
+      const cat = new PIXI.Sprite(PIXI.Loader.shared.resources["cat"].texture);
+
+      cat.x = 100;
+      cat.y = 100;
+
+      app.stage.addChild(cat);
+
+    }
+  </script>
+</body>
+</html>
