@@ -20,7 +20,7 @@
     document.body.appendChild(app.view);
 
     PIXI.Loader.shared
-        .add("cat", "http://localhost:8000/cat.png")
+        .add("cat", "http://127.0.0.1:8080/cat.png")
         .load(setup);
 
     function setup() {

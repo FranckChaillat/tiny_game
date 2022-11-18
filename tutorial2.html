@@ -16,7 +16,7 @@
     Sprite = PIXI.Sprite,
     Rectangle = PIXI.Rectangle;
 
-    let type = "WebGL";
+    let type = "WebGL";Z
 
     //Create a Pixi Application
     const app = new PIXI.Application({ 
@@ -29,7 +29,7 @@
     //Add the canvas that Pixi automatically created for you to the HTML document
     document.body.appendChild(app.view);
 
-    loader.add('sheet', "http://0.0.0.0:8000/images/ogrehunt/ogrehunt.json");
+    loader.add('sheet', "http://127.0.0.1:8080/images/ogrehunt/ogrehunt.json");
     loader.load(setup);
 
 
